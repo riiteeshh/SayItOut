@@ -22,8 +22,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: RefreshIndicator(
         color: Colors.purple,
-        strokeWidth: 2,
-        onRefresh: () {
+        strokeWidth: 1.7,
+        onRefresh: () async {
+          await Future.delayed(Duration(seconds: 2));
           return refreshed();
         },
         child: ListView.builder(

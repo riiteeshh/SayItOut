@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talkitout/pages/home_page.dart';
+import 'package:talkitout/pages/settings_page.dart';
 
 class MainLayoutPage extends StatefulWidget {
   const MainLayoutPage({super.key});
@@ -10,7 +11,7 @@ class MainLayoutPage extends StatefulWidget {
 
 class _MainLayoutPageState extends State<MainLayoutPage> {
   int _selectedIndex = 0;
-  List<Widget> _pages = [HomePage(), Text('PostStatus'), Text('Profile')];
+  List<Widget> _pages = [HomePage(), Text('PostStatus'), SettingsPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
