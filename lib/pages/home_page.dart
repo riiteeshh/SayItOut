@@ -39,40 +39,57 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                child: CircleAvatar(
-                                    backgroundColor: Colors.purple,
-                                    child: Image.network(
-                                      'https://images-platform.99static.com//zA0n0YWqsSEq4b7S1wRKZWw1QU0=/0x271:2274x2545/fit-in/500x500/projects-files/113/11307/1130735/6d7f887d-54a1-451b-9b23-23edc9bd9b2e.png',
-                                      fit: BoxFit.cover,
-                                    )),
+                              Row(
+                                children: [
+                                  Container(
+                                    child: CircleAvatar(
+                                        backgroundColor: Colors.purple,
+                                        child: Image.network(
+                                          'https://images-platform.99static.com//zA0n0YWqsSEq4b7S1wRKZWw1QU0=/0x271:2274x2545/fit-in/500x500/projects-files/113/11307/1130735/6d7f887d-54a1-451b-9b23-23edc9bd9b2e.png',
+                                          fit: BoxFit.cover,
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.04,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      'Ritesh Pandey',
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      'Nepal',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.04,
-                              ),
                               Container(
-                                child: Text(
-                                  'Ritesh Pandey',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
+                                alignment: Alignment.topRight,
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.report,
+                                    color: Colors.red,
+                                    size: 25,
+                                  ),
+                                  onPressed: () {},
                                 ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(top: 5),
-                                child: Text(
-                                  'Nepal',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.grey,
-                                      fontStyle: FontStyle.italic),
-                                ),
-                              ),
+                              )
                             ],
                           ),
                           SizedBox(
