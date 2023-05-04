@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Future<void> refreshed() async {
     Navigator.popUntil(context, (route) => route.isFirst);
-    Navigator.pushReplacementNamed(context, RouteManager.homePage);
+    Navigator.pushReplacementNamed(context, RouteManager.mainLayoutPage);
   }
 
   @override
