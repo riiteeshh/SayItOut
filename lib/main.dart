@@ -15,11 +15,16 @@ class MyApp extends StatelessWidget {
       initialRoute: RouteManager.loginPage,
       onGenerateRoute: RouteManager.generateRoute,
       theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-        elevation: 0,
-        color: Colors.purple,
-        centerTitle: true,
-      )),
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          color: Colors.purple,
+          centerTitle: true,
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            selectedItemColor: Colors.purple,
+            unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+            selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold)),
+      ),
       // home: SplashScreen(),
     );
   }

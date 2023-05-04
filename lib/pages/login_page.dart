@@ -86,7 +86,11 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.popUntil(context, (route) => route.isFirst);
+                    Navigator.pushReplacementNamed(
+                        context, RouteManager.mainLayoutPage);
+                  },
                   child: Text(
                     'LogIn',
                     style: TextStyle(fontSize: 19),
@@ -101,8 +105,10 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SignUpAvatar(
-                        backgroundColor: Colors.white,
-                        avatarIcon: Icons.facebook_outlined),
+                      backgroundColor: Colors.white,
+                      avatarIcon: Icons.facebook_outlined,
+                      iconColor: Colors.blue,
+                    ),
                     const SizedBox(
                       width: 20,
                     ),
@@ -111,8 +117,10 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushNamed(context, RouteManager.signUpPage);
                       },
                       child: SignUpAvatar(
-                          backgroundColor: Colors.white,
-                          avatarIcon: Icons.person_add_alt_1_rounded),
+                        backgroundColor: Colors.white,
+                        avatarIcon: Icons.person_add_alt_1_rounded,
+                        iconColor: Colors.purple,
+                      ),
                     ),
                   ],
                 ),

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SignUpAvatar extends StatelessWidget {
-  Color backgroundColor;
+  Color backgroundColor, iconColor;
   IconData avatarIcon;
   SignUpAvatar(
-      {super.key, required this.backgroundColor, required this.avatarIcon});
+      {super.key,
+      required this.backgroundColor,
+      required this.avatarIcon,
+      required this.iconColor});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +16,7 @@ class SignUpAvatar extends StatelessWidget {
       child: Icon(
         avatarIcon,
         size: 40,
+        color: iconColor,
       ),
     );
   }
