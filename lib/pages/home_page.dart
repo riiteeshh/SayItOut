@@ -64,7 +64,8 @@ class _HomePageState extends State<HomePage> {
                                             child: CircleAvatar(
                                                 backgroundColor: Colors.purple,
                                                 child: Image.network(
-                                                  'https://images-platform.99static.com//zA0n0YWqsSEq4b7S1wRKZWw1QU0=/0x271:2274x2545/fit-in/500x500/projects-files/113/11307/1130735/6d7f887d-54a1-451b-9b23-23edc9bd9b2e.png',
+                                                  snapshot.data[index]
+                                                      ['posteravatar'],
                                                   fit: BoxFit.cover,
                                                 )),
                                           ),
@@ -143,8 +144,10 @@ class _HomePageState extends State<HomePage> {
                       );
                     });
               }
-              return CircularProgressIndicator(
-                color: Colors.purple,
+              return Center(
+                child: CircularProgressIndicator(
+                  color: Colors.purple,
+                ),
               );
             }),
       ),

@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   final number = TextEditingController();
   final password = TextEditingController();
   bool wait = false;
-  var name, address, pwd, anonymousName, id;
+  var name, address, pwd, anonymousName, id, avatar;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,11 +168,13 @@ class _LoginPageState extends State<LoginPage> {
           pwd = element['password'];
           address = element['address'];
           anonymousName = element['anonymousName'];
+          avatar = element['avatar'];
           if (password.text == pwd) {
             await sharedpref.savedata('name', name);
             await sharedpref.savedata('id', id);
             await sharedpref.savedata('address', address);
             await sharedpref.savedata('anonymousName', anonymousName);
+            await sharedpref.savedata('avatar', avatar);
             setState(() {
               wait = false;
             });

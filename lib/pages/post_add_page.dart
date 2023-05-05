@@ -73,18 +73,20 @@ class _PostAddPageState extends State<PostAddPage> {
     setState(() {
       wait = true;
     });
-    var id, name, anonymousName, address;
+    var id, name, anonymousName, address, avatar;
     id = await sharedpref.getdata('id');
     name = await sharedpref.getdata('name');
     anonymousName = await sharedpref.getdata('anonymousName');
     address = await sharedpref.getdata('address');
+    avatar = await sharedpref.getdata('avatar');
 
     Map<String, dynamic> postingData = {
       'posterId': id.toString(),
       'postername': name.toString(),
       'anonymousName': anonymousName.toString(),
       'posterAddress': address.toString(),
-      'post': postData.text.toString()
+      'post': postData.text.toString(),
+      'posteravatar': avatar
     };
     await dbref.add(postingData);
     setState(() {

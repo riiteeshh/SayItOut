@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:talkitout/pages/locallysaveddata/shared_prefs.dart';
 
@@ -12,12 +13,25 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  var name, anonymousName;
+  var name, anonymousName, avatar, id;
   Future<dynamic> getData() async {
+    id = await sharedpref.getdata('id');
     name = await sharedpref.getdata('name');
     anonymousName = await sharedpref.getdata('anonymousName');
+    avatar = await sharedpref.getdata('avatar');
     return [name, anonymousName];
   }
+
+  final dbref = FirebaseFirestore.instance.collection('UserData');
+
+  List Avatar = [
+    'https://firebasestorage.googleapis.com/v0/b/sayitout-f2ee2.appspot.com/o/dpimage2.png?alt=media&token=39e1bd27-0192-4fe2-9395-e567498e51ad',
+    'https://firebasestorage.googleapis.com/v0/b/sayitout-f2ee2.appspot.com/o/dpimage3.png?alt=media&token=7314b54d-c091-41de-a1b5-fcf3ba7e2c04',
+    'https://firebasestorage.googleapis.com/v0/b/sayitout-f2ee2.appspot.com/o/dpimage1.png?alt=media&token=e3f2f6df-7efb-409d-b784-d240a2982a85',
+    'https://firebasestorage.googleapis.com/v0/b/sayitout-f2ee2.appspot.com/o/dp4.png?alt=media&token=a329c61f-a3ba-4c0a-83f3-892cdf9a4983',
+    'https://firebasestorage.googleapis.com/v0/b/sayitout-f2ee2.appspot.com/o/dp6.jpg?alt=media&token=90bd081c-b92d-4dcc-bb20-60873216941f',
+    'https://firebasestorage.googleapis.com/v0/b/sayitout-f2ee2.appspot.com/o/dp5.png?alt=media&token=5a802485-7720-4da3-9035-5617893da065'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +59,17 @@ class _SettingsPageState extends State<SettingsPage> {
                                   vertical: 30, horizontal: 20),
                               child: ClipOval(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: CircleAvatar(
-                                  radius: 45,
-                                  backgroundColor: Colors.purple,
-                                  child: Image.network(
-                                    'https://images-platform.99static.com//zA0n0YWqsSEq4b7S1wRKZWw1QU0=/0x271:2274x2545/fit-in/500x500/projects-files/113/11307/1130735/6d7f887d-54a1-451b-9b23-23edc9bd9b2e.png',
-                                    fit: BoxFit.cover,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    chooseAvatar();
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 45,
+                                    backgroundColor: Colors.purple,
+                                    child: Image.network(
+                                      avatar,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -125,5 +144,38 @@ class _SettingsPageState extends State<SettingsPage> {
             );
           }),
     );
+  }
+
+  void chooseAvatar() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return GridView.builder(
+              itemCount: Avatar.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 1.3, crossAxisCount: 3),
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.all(5),
+                  child: GestureDetector(
+                    onTap: () async {
+                      print(Avatar[index]);
+
+                      await dbref.doc(id).update({'avatar': Avatar[index]});
+                      sharedpref.savedata('avatar', Avatar[index]);
+                      Navigator.pop(context);
+                    },
+                    child: CircleAvatar(
+                      radius: 1,
+                      backgroundColor: Colors.purple,
+                      child: Image.network(
+                        Avatar[index],
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                );
+              });
+        });
   }
 }

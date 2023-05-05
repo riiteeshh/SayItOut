@@ -153,7 +153,9 @@ class _SignUpPageState extends State<SignUpPage> {
       'address': address.text.toUpperCase(),
       'emailAddress': email.text.toUpperCase(),
       'password': password.text.toUpperCase(),
-      'anonymousName': nickname.text.toUpperCase()
+      'anonymousName': nickname.text.toUpperCase(),
+      'avatar':
+          'https://firebasestorage.googleapis.com/v0/b/sayitout-f2ee2.appspot.com/o/dpimage2.png?alt=media&token=39e1bd27-0192-4fe2-9395-e567498e51ad'
     };
     await dbref.add(users);
     setState(() {
