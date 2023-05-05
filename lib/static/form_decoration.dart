@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-InputDecoration formdecoration({required String hint, required String label}) {
+InputDecoration formdecoration({required String hint, String? label}) {
   double rad = 10;
   return InputDecoration(
     hintText: hint,
