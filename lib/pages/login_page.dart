@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:talkitout/components/signup_avatar.dart';
+import 'package:talkitout/pages/locallysaveddata/shared_prefs.dart';
 import 'package:talkitout/routes/routes.dart';
 import 'package:talkitout/static/form_decoration.dart';
+import 'package:talkitout/validator/validator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +14,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  var dbref = FirebaseFirestore.instance.collection('UserData');
+  final number = TextEditingController();
+  final password = TextEditingController();
+  bool wait = false;
+  var name, address, pwd, anonymousName, id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +44,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Container(
                 child: Form(
+                  key: _formKey,
                   child: Column(
                     children: [
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: TextFormField(
+                          controller: number,
+                          validator: (value) => validateEmail(value),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: formdecoration(
                               hint: 'john mayer @abc.com',
                               label: 'E-mail address'),
@@ -51,6 +64,9 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: TextFormField(
+                          controller: password,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) => validatePassword(value),
                           obscuringCharacter: '*',
                           obscureText: true,
                           decoration:
@@ -87,14 +103,18 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: Colors.purple,
                   ),
                   onPressed: () {
-                    Navigator.popUntil(context, (route) => route.isFirst);
-                    Navigator.pushReplacementNamed(
-                        context, RouteManager.mainLayoutPage);
+                    if (_formKey.currentState!.validate()) {
+                      login();
+                    }
                   },
-                  child: Text(
-                    'LogIn',
-                    style: TextStyle(fontSize: 19),
-                  ),
+                  child: wait
+                      ? CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(
+                          'LogIn',
+                          style: TextStyle(fontSize: 19),
+                        ),
                 ),
               ),
               SizedBox(
@@ -130,5 +150,52 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void login() async {
+    setState(() {
+      wait = true;
+    });
+    await dbref
+        .where('number', isEqualTo: number.text)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((element) async {
+        if (element.exists) {
+          //start here
+          name = element['name'];
+          id = element.id;
+          pwd = element['password'];
+          address = element['address'];
+          anonymousName = element['anonymousName'];
+          if (password.text == pwd) {
+            await sharedpref.savedata('name', name);
+            await sharedpref.savedata('id', id);
+            await sharedpref.savedata('address', address);
+            await sharedpref.savedata('anonymousName', anonymousName);
+            setState(() {
+              wait = false;
+            });
+            Navigator.popUntil(context, (route) => route.isFirst);
+            Navigator.pushReplacementNamed(
+                context, RouteManager.mainLayoutPage);
+          } else if (password.text != pwd) {
+            setState(() {
+              wait = false;
+            });
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              behavior: SnackBarBehavior.floating,
+              elevation: 20,
+              content: Text(
+                'Enter valid Username & Password',
+                style: TextStyle(color: Colors.red),
+              ),
+              backgroundColor: Colors.white,
+            ));
+          }
+        }
+      });
+    });
   }
 }

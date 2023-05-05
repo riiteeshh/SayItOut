@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "852453188975",
+    "project_id": "sayitout-f2ee2",
+    "storage_bucket": "sayitout-f2ee2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852453188975:android:24cc10e72613923046749a",
+        "android_client_info": {
+          "package_name": "com.example.talkitout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852453188975-g3ts4ps4aaf9loim9kbo4u1g7k192a9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ9VI5s_mK7r2WOf0GENeiO_gIAnzcapk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852453188975-g3ts4ps4aaf9loim9kbo4u1g7k192a9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
