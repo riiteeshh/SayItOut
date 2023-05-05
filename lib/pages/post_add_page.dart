@@ -82,7 +82,7 @@ class _PostAddPageState extends State<PostAddPage> {
     Map<String, dynamic> postingData = {
       'posterId': id.toString(),
       'postername': name.toString(),
-      'anonymouName': anonymousName.toString(),
+      'anonymousName': anonymousName.toString(),
       'posterAddress': address.toString(),
       'post': postData.text.toString()
     };
