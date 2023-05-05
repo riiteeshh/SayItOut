@@ -50,12 +50,13 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: TextFormField(
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.number,
                           controller: number,
                           validator: (value) => validateEmail(value),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: formdecoration(
-                              hint: 'john mayer @abc.com',
-                              label: 'E-mail address'),
+                              hint: '9819191919', label: 'Your number'),
                         ),
                       ),
                       SizedBox(
@@ -64,6 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: TextFormField(
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.visiblePassword,
                           controller: password,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) => validatePassword(value),

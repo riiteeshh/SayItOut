@@ -38,6 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
+                    textInputAction: TextInputAction.next,
                     validator: (value) => namevalidator(value),
                     controller: name,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -51,6 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: number,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => validateNumber(value),
@@ -64,6 +66,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: address,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => namevalidator(value),
@@ -77,6 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: email,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => validateEmail(value),
@@ -90,6 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
+                    textInputAction: TextInputAction.next,
                     controller: password,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => validatePassword(value),
@@ -104,6 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
+                    textInputAction: TextInputAction.done,
                     controller: nickname,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => namevalidator(value),
