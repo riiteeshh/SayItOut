@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                                                       ['posterAddress']
                                                   .toString(),
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 12,
                                                   color: Colors.grey,
                                                   fontStyle: FontStyle.italic),
                                             ),
@@ -121,11 +121,12 @@ class _HomePageState extends State<HomePage> {
                                   Container(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 50),
+                                    alignment: Alignment.topLeft,
                                     child: Text(
                                       snapshot.data[index]['post'].toString(),
                                       style: TextStyle(
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                   SizedBox(
