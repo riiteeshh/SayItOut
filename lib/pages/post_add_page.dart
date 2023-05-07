@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:talkitout/pages/locallysaveddata/shared_prefs.dart';
+import 'package:talkitout/locallysaveddata/shared_prefs.dart';
 import 'package:talkitout/static/form_decoration.dart';
 import 'package:talkitout/validator/validator.dart';
 
