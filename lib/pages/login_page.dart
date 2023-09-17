@@ -50,7 +50,6 @@ class _LoginPageState extends State<LoginPage> {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: TextFormField(
-                          textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.number,
                           controller: number,
                           validator: (value) => validateEmail(value),
